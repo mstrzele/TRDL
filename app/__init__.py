@@ -12,7 +12,7 @@ app.config.from_prefixed_env()
 db = SQLAlchemy(app)
 
 
-@app.route('/healthz')
+@app.route('/healthz', methods=['GET'])
 def healhtz():
     return '', 200
 
@@ -34,7 +34,7 @@ def init_db():
     db.session.commit()
 
 
-@app.route('/value')
+@app.route('/value', methods=['GET'])
 def value():
     value = db.first_or_404(db.select(Value))
     return f'{value.id}'

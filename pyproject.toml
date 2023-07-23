@@ -1,0 +1,38 @@
+[project]
+name = "trdl"
+version = "1.0.0"
+description = "The Responding Dark Laughter"
+readme = "README.md"
+requires-python = ">=3"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Maciej Strzelecki"},
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Flask",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development",
+]
+
+[project.urls]
+Repository = "https://github.com/mstrzele/TRDL.git"
+Changelog = "https://github.com/mstrzele/TRDL/blob/main/CHANGELOG.md"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_scheme = "semver"
+version_provider = "pep621"
+major_version_zero = true

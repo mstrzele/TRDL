@@ -1,0 +1,56 @@
+---
+services:
+  web:
+    depends_on:
+      - app
+    image: nginx:${NGINX_VERSION:-1.25.1}-alpine
+    volumes:
+      - ${PWD}/templates:/etc/nginx/templates:ro
+    networks:
+      - app
+    ports:
+      - 8080:80
+
+  app:
+    depends_on:
+      - db
+    build:
+      context: app
+      args:
+        - PYTHON_VERSION=${PYTHON_VERSION:-3.11.4}
+        - POSTGRESQL_VERSION=${POSTGRESQL_VERSION:-15.3}
+    networks:
+      - app
+      - db
+    environment:
+      - PGHOST=db
+      - PGPORT=5432
+      - PGUSER=postgres
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+    stop_signal: SIGINT
+    deploy:
+      replicas: 3
+
+  db:
+    image: postgres:${POSTGRESQL_VERSION:-15.3}-alpine
+    networks:
+      - db
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata:rw
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+      # ! If the data volume you're using is a filesystem mountpoint (like with
+      # ! GCE persistent disks), or remote folder that cannot be chowned to the
+      # ! postgres user (like some NFS mounts), or contains folders/files (e.g.
+      # ! lost+found), Postgres initdb requires a subdirectory to be created
+      # ! within the mountpoint to contain the data.
+      # ? https://github.com/docker-library/docs/tree/master/postgres#pgdata
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+networks:
+  app:
+  db:
+
+volumes:
+  pgdata:

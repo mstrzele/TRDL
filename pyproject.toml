@@ -28,7 +28,6 @@ classifiers = [
 
 [project.urls]
 Repository = "https://github.com/mstrzele/TRDL.git"
-Changelog = "https://github.com/mstrzele/TRDL/blob/main/CHANGELOG.md"
 
 [tool.commitizen]
 name = "cz_conventional_commits"

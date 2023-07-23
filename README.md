@@ -17,7 +17,7 @@
 ## Background
 
 > The requirements on TRDL are that the production system is a high availability
-> service > with [a strict service level agreement](#sla-slis-and-slos)
+> service with [a strict service level agreement](#sla-slis-and-slos)
 > ([several](https://en.wiktionary.org/wiki/several#Determiner) "9" s uptime).
 >
 > The system consists of an HTTP server with some code running inside or behind

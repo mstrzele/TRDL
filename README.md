@@ -82,11 +82,11 @@ $ docker compose up --wait
 ## Usage
 
 > Here is a sample interaction with TRDL:
->
-> ```shell
-> $ curl http://1.2.3.4/v1/value
-> 42
-> ```
+
+ ```shell
+ $ curl http://127.0.0.1:8080/v1/value
+ 42
+ ```
 
 ## Test
 

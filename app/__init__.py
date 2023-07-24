@@ -27,10 +27,7 @@ def init_db():
     db.drop_all()
     db.create_all()
 
-    value = Value()
-    value.id = 42
-
-    db.session.add(value)
+    db.session.add(Value(id=42))
     db.session.commit()
 
 

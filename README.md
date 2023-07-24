@@ -42,10 +42,11 @@ sequenceDiagram
 ## Install
 
 1. [Install `direnv`](https://direnv.net/docs/installation.html).
-2. [Install Docker Compose](https://docs.docker.com/compose/install/).
-3. Create [an `.env` file](https://thenewstack.io/what-is-the-docker-env-file-and-how-do-you-use-it/)
+2. Configure `direnv` to [load `.env`](https://direnv.net/man/direnv.toml.1.html#codeloaddotenvcode).
+3. [Install Docker Compose](https://docs.docker.com/compose/install/).
+4. Create [an `.env` file](https://thenewstack.io/what-is-the-docker-env-file-and-how-do-you-use-it/)
    with [the environment variable setting the superuser password for PostgreSQL](https://github.com/docker-library/docs/tree/master/postgres#postgres_password).
-4. Create and start containers.
+5. Create and start containers.
 
 ```shell
 $ echo "POSTGRES_PASSWORD='$(openssl rand -base64 16)'" > .env

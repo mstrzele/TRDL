@@ -3,11 +3,8 @@ from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///'
 app.config.from_prefixed_env()
-if app.testing:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{__name__}.db'
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///'
 
 db = SQLAlchemy(app)
 

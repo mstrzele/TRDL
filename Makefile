@@ -3,6 +3,7 @@ SHELL = /bin/sh
 PYTHON  ?= python3
 PIP      = .venv/bin/pip
 OPENSSL ?= openssl
+GREP    ?= grep
 DIRENV  ?= direnv
 DOCKER  ?= docker
 COMPOSE ?= $(DOCKER) compose
@@ -15,8 +16,13 @@ all: clean install
 
 app/requirements.txt: .venv
 
+~/.config/direnv/direnv.toml:
+	@touch $@
+	@grep -Fxq '[global]' $@ || echo '[global]' | tee -a $@
+	@grep -Fxq 'load_dotenv = true' $@ || echo 'load_dotenv = true' | tee -a $@
+
 export POSTGRES_PASSWORD=$(shell $(OPENSSL) rand -base64 16)
-.env:
+.env: ~/.config/direnv/direnv.toml
 	@echo "POSTGRES_PASSWORD='$(POSTGRES_PASSWORD)'" > $@
 	$(DIRENV) allow
 
